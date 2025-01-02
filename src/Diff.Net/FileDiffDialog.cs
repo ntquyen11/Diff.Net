@@ -6,6 +6,7 @@ namespace Diff.Net
 	using System.ComponentModel;
 	using System.Drawing;
 	using System.IO;
+	using System.Security.Cryptography.X509Certificates;
 	using System.Windows.Forms;
 	using System.Xml;
 	using Menees;
@@ -171,5 +172,6 @@ namespace Diff.Net
 		}
 
 		#endregion
+
 	}
 }

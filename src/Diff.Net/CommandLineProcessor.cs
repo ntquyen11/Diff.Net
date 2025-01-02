@@ -142,6 +142,10 @@ namespace Diff.Net
 							Options.CompareType = CompareType.Xml;
 							break;
 
+						case "z":
+							Options.CompareType = CompareType.Zip;
+							break;
+
 						case "b":
 							Options.CompareType = CompareType.Binary;
 							break;

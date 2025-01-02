@@ -18,6 +18,7 @@ namespace Diff.Net
 		Text,
 		Xml,
 		Binary,
+		Zip,
 	}
 
 	#endregion

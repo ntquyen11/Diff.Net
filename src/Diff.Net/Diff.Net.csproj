@@ -6,11 +6,12 @@
 		<ApplicationIcon>Images\DiffDotNet.ico</ApplicationIcon>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+		<BaseOutputPath></BaseOutputPath>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Menees.Diffs.Windows.Forms" Version="5.0.3" />
-		<PackageReference Include="System.Resources.Extensions" Version="6.0.0"/>
+		<PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

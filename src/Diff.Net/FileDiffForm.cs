@@ -7,6 +7,7 @@ namespace Diff.Net
 	using System.ComponentModel;
 	using System.Drawing;
 	using System.IO;
+	using System.IO.Compression;
 	using System.Text;
 	using System.Windows.Forms;
 	using System.Xml;

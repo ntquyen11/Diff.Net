@@ -59,6 +59,10 @@
 			{
 				Options.CompareType = CompareType.Auto;
 			}
+			else if (this.compareZip.Checked)
+			{
+				Options.CompareType = CompareType.Zip;
+			}
 			else if (this.compareText.Checked)
 			{
 				Options.CompareType = CompareType.Text;
@@ -96,6 +100,7 @@
 			this.compareAuto.Checked = true;
 			this.compareText.Checked = Options.CompareType == CompareType.Text;
 			this.compareXml.Checked = Options.CompareType == CompareType.Xml;
+			this.compareZip.Checked = Options.CompareType == CompareType.Zip;
 			if (this.ShowBinaryOptions)
 			{
 				this.compareBinary.Checked = Options.CompareType == CompareType.Binary;

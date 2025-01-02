@@ -197,39 +197,39 @@ namespace Diff.Net
 			// tsFileSep2
 			// 
 			this.tsFileSep2.Name = "tsFileSep2";
-			this.tsFileSep2.Size = new System.Drawing.Size(262, 6);
-			// 
-			// mnuExit
-			// 
-			this.mnuExit.Image = global::Diff.Net.Properties.Resources.Exit;
-			this.mnuExit.ImageTransparentColor = System.Drawing.Color.Fuchsia;
-			this.mnuExit.Name = "mnuExit";
-			this.mnuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-			this.mnuExit.Size = new System.Drawing.Size(265, 22);
-			this.mnuExit.Text = "E&xit";
-			this.mnuExit.Click += new System.EventHandler(this.Exit_Click);
-			// 
-			// mnuTools
-			// 
-			this.mnuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsFileSep2.Size = new System.Drawing.Size(328, 6);
+            // 
+            // mnuExit
+            // 
+            this.mnuExit.Image = global::Diff.Net.Properties.Resources.Exit;
+            this.mnuExit.ImageTransparentColor = System.Drawing.Color.Fuchsia;
+            this.mnuExit.Name = "mnuExit";
+            this.mnuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.mnuExit.Size = new System.Drawing.Size(331, 26);
+            this.mnuExit.Text = "E&xit";
+            this.mnuExit.Click += new System.EventHandler(this.Exit_Click);
+            // 
+            // mnuTools
+            // 
+            this.mnuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuOptions});
-			this.mnuTools.MergeIndex = 7;
-			this.mnuTools.Name = "mnuTools";
-			this.mnuTools.Size = new System.Drawing.Size(48, 20);
-			this.mnuTools.Text = "&Tools";
-			// 
-			// mnuOptions
-			// 
-			this.mnuOptions.Image = global::Diff.Net.Properties.Resources.Options;
-			this.mnuOptions.ImageTransparentColor = System.Drawing.Color.Fuchsia;
-			this.mnuOptions.Name = "mnuOptions";
-			this.mnuOptions.Size = new System.Drawing.Size(125, 22);
-			this.mnuOptions.Text = "&Options...";
-			this.mnuOptions.Click += new System.EventHandler(this.Options_Click);
-			// 
-			// mnuWindow
-			// 
-			this.mnuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuTools.MergeIndex = 7;
+            this.mnuTools.Name = "mnuTools";
+            this.mnuTools.Size = new System.Drawing.Size(58, 24);
+            this.mnuTools.Text = "&Tools";
+            // 
+            // mnuOptions
+            // 
+            this.mnuOptions.Image = global::Diff.Net.Properties.Resources.Options;
+            this.mnuOptions.ImageTransparentColor = System.Drawing.Color.Fuchsia;
+            this.mnuOptions.Name = "mnuOptions";
+            this.mnuOptions.Size = new System.Drawing.Size(153, 26);
+            this.mnuOptions.Text = "&Options...";
+            this.mnuOptions.Click += new System.EventHandler(this.Options_Click);
+            // 
+            // mnuWindow
+            // 
+            this.mnuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuTileVertically,
             this.mnuTileHorizontally,
             this.mnuCascade,
@@ -245,43 +245,43 @@ namespace Diff.Net
 			this.mnuTileVertically.Image = global::Diff.Net.Properties.Resources.TileVertically;
 			this.mnuTileVertically.ImageTransparentColor = System.Drawing.Color.Fuchsia;
 			this.mnuTileVertically.Name = "mnuTileVertically";
-			this.mnuTileVertically.Size = new System.Drawing.Size(160, 22);
-			this.mnuTileVertically.Text = "Tile &Vertically";
-			this.mnuTileVertically.Click += new System.EventHandler(this.TileVertically_Click);
-			// 
-			// mnuTileHorizontally
-			// 
-			this.mnuTileHorizontally.Image = global::Diff.Net.Properties.Resources.TileHorizontally;
-			this.mnuTileHorizontally.ImageTransparentColor = System.Drawing.Color.Fuchsia;
-			this.mnuTileHorizontally.Name = "mnuTileHorizontally";
-			this.mnuTileHorizontally.Size = new System.Drawing.Size(160, 22);
-			this.mnuTileHorizontally.Text = "Tile &Horizontally";
-			this.mnuTileHorizontally.Click += new System.EventHandler(this.TileHorizontally_Click);
-			// 
-			// mnuCascade
-			// 
-			this.mnuCascade.Image = global::Diff.Net.Properties.Resources.Cascade;
-			this.mnuCascade.ImageTransparentColor = System.Drawing.Color.Fuchsia;
-			this.mnuCascade.Name = "mnuCascade";
-			this.mnuCascade.Size = new System.Drawing.Size(160, 22);
-			this.mnuCascade.Text = "&Cascade";
-			this.mnuCascade.Click += new System.EventHandler(this.Cascade_Click);
-			// 
-			// tsWindowSep1
-			// 
-			this.tsWindowSep1.Name = "tsWindowSep1";
-			this.tsWindowSep1.Size = new System.Drawing.Size(157, 6);
-			// 
-			// mnuCloseAll
-			// 
-			this.mnuCloseAll.Name = "mnuCloseAll";
-			this.mnuCloseAll.Size = new System.Drawing.Size(160, 22);
-			this.mnuCloseAll.Text = "Close &All";
-			this.mnuCloseAll.Click += new System.EventHandler(this.CloseAll_Click);
-			// 
-			// mnuHelp
-			// 
-			this.mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuTileVertically.Size = new System.Drawing.Size(201, 26);
+            this.mnuTileVertically.Text = "Tile &Vertically";
+            this.mnuTileVertically.Click += new System.EventHandler(this.TileVertically_Click);
+            // 
+            // mnuTileHorizontally
+            // 
+            this.mnuTileHorizontally.Image = global::Diff.Net.Properties.Resources.TileHorizontally;
+            this.mnuTileHorizontally.ImageTransparentColor = System.Drawing.Color.Fuchsia;
+            this.mnuTileHorizontally.Name = "mnuTileHorizontally";
+            this.mnuTileHorizontally.Size = new System.Drawing.Size(201, 26);
+            this.mnuTileHorizontally.Text = "Tile &Horizontally";
+            this.mnuTileHorizontally.Click += new System.EventHandler(this.TileHorizontally_Click);
+            // 
+            // mnuCascade
+            // 
+            this.mnuCascade.Image = global::Diff.Net.Properties.Resources.Cascade;
+            this.mnuCascade.ImageTransparentColor = System.Drawing.Color.Fuchsia;
+            this.mnuCascade.Name = "mnuCascade";
+            this.mnuCascade.Size = new System.Drawing.Size(201, 26);
+            this.mnuCascade.Text = "&Cascade";
+            this.mnuCascade.Click += new System.EventHandler(this.Cascade_Click);
+            // 
+            // tsWindowSep1
+            // 
+            this.tsWindowSep1.Name = "tsWindowSep1";
+            this.tsWindowSep1.Size = new System.Drawing.Size(198, 6);
+            // 
+            // mnuCloseAll
+            // 
+            this.mnuCloseAll.Name = "mnuCloseAll";
+            this.mnuCloseAll.Size = new System.Drawing.Size(201, 26);
+            this.mnuCloseAll.Text = "Close &All";
+            this.mnuCloseAll.Click += new System.EventHandler(this.CloseAll_Click);
+            // 
+            // mnuHelp
+            // 
+            this.mnuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuAbout});
 			this.mnuHelp.MergeIndex = 9;
 			this.mnuHelp.Name = "mnuHelp";
