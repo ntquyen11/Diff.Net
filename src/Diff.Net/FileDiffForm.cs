@@ -30,7 +30,10 @@ namespace Diff.Net
 
 		public FileDiffForm()
 		{
-			this.InitializeComponent();
+			if (this.InitializeUI)
+			{
+				this.InitializeComponent();
+			}
 
 			Options.OptionsChanged += this.OptionsChanged;
 		}
@@ -38,6 +41,7 @@ namespace Diff.Net
 		#endregion
 
 		#region Public Properties
+		public bool InitializeUI { get; set; } = true;
 
 		public string? ToolTipText
 		{

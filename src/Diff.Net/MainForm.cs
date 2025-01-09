@@ -98,39 +98,13 @@ namespace Diff.Net
 				{
 					Options.LastFileA = dialog.NameA;
 					Options.LastFileB = dialog.NameB;
-
-					// dirA = Path.GetDirectoryName(path: fileNameA);
-					// dirB = Path.GetDirectoryName(path: fileNameB);
 					int lastIndexA = dialog.NameA.LastIndexOf('\\');
 					int lastIndexB = dialog.NameB.LastIndexOf('\\');
-
-					// string extractFileA = @"C:\Users\hoang\Downloads\test1";
-					// string extractFileB = @"C:\Users\hoang\Downloads\test2";
 					if (
 						Options.CompareType == CompareType.Zip
 						&& Path.GetExtension(dialog.NameA).Equals(".zip", StringComparison.OrdinalIgnoreCase)
 						&& Path.GetExtension(dialog.NameB).Equals(".zip", StringComparison.OrdinalIgnoreCase))
 					{
-						// extract file
-						// if (!Directory.Exists(extractFileA))
-						// {
-						// Directory.CreateDirectory(extractFileA);
-						// }
-						// else
-						// {
-						// Directory.Delete(extractFileA, recursive: true);
-						// Directory.CreateDirectory(extractFileA);
-						// }
-
-						// if (!Directory.Exists(extractFileB))
-						// {
-						// Directory.CreateDirectory(extractFileB);
-						// }
-						// else
-						// {
-						// Directory.Delete(extractFileB, recursive: true);
-						// Directory.CreateDirectory(extractFileB);
-						// }
 						string dirA = dialog.NameA.Substring(0, lastIndexA);
 						string dirB = dialog.NameB.Substring(0, lastIndexB);
 						string fileA = Path.GetFileNameWithoutExtension(dialog.NameA);
@@ -149,8 +123,8 @@ namespace Diff.Net
 							Directory.CreateDirectory(extractFileB);
 						}
 
-						ZipFile.ExtractToDirectory(dialog.NameA, dirA);
-						ZipFile.ExtractToDirectory(dialog.NameB, dirB);
+						ZipFile.ExtractToDirectory(dialog.NameA, extractFileA);
+						ZipFile.ExtractToDirectory(dialog.NameB, extractFileB);
 
 						// get all fileZip in subfolder and extract them
 						string[] zipFilesA = Directory.GetFiles(extractFileA, "*.zip", SearchOption.AllDirectories);
@@ -161,8 +135,6 @@ namespace Diff.Net
 								{
 								int lastIndex = zipFile.LastIndexOf('\\');
 								string? dir = zipFile.Substring(0, lastIndex);
-
-								// string extractFile = Path.GetDirectoryName(zipFile);
 								string extractFile = Path.Combine(dir, Path.GetFileNameWithoutExtension(zipFile));
 								if (Directory.Exists(extractFile))
 										{
@@ -181,8 +153,6 @@ namespace Diff.Net
 								{
 								int lastIndex = zipFile.LastIndexOf('\\');
 								string? dir = zipFile.Substring(0, lastIndex);
-
-								// string extractFile = Path.GetDirectoryName(zipFile);
 								string extractFile = Path.Combine(dir, Path.GetFileNameWithoutExtension(zipFile));
 								if (Directory.Exists(extractFile))
 									{
@@ -195,9 +165,19 @@ namespace Diff.Net
 								}
 						}
 
-						this.ShowDifferences(extractFileA, extractFileB, DiffType.Directory);
+						string[] directoriesA = Directory.GetDirectories(extractFileA, "*", SearchOption.AllDirectories);
+						string[] directoriesB = Directory.GetDirectories(extractFileB, "*", SearchOption.AllDirectories);
+						var leafDirectoriesA = directoriesA.Where(dir => Directory.GetDirectories(dir).Length == 0);
+						var leafDirectoriesB = directoriesB.Where(dir => Directory.GetDirectories(dir).Length == 0);
+						foreach (string dirLeft in leafDirectoriesA)
+						{
+							foreach (string dirRight in leafDirectoriesB)
+							{
+								this.ShowDifferences(dirLeft, dirRight, DiffType.Directory);
+							}
+						}
 
-						// this.ShowDirDifferences(extractFileA, extractFileB, DialogDisplay.Always);
+						this.ShowDifferences(extractFileA + '\\' + fileA, extractFileB + '\\' + fileB, DiffType.Directory);
 					}
 					else
 					{
@@ -222,10 +202,14 @@ namespace Diff.Net
 			}
 		}
 
+		// show difference when clicking filename without showing difffiledialog
+		public void ShowDirectDifferences(string fileNameA, string fileNameB)
+		{
+			this.ShowDifferences(fileNameA, fileNameB, DiffType.File);
+		}
 		#endregion
 
 		#region Private Methods
-
 		private static string BuildRecentItemMenuString(string itemA, string itemB) => itemA + "\n      " + itemB;
 
 		private void FormSave_LoadSettings(object sender, SettingsEventArgs e)

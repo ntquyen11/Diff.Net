@@ -25,12 +25,17 @@ namespace Diff.Net
 
 		public DirDiffForm()
 		{
-			this.InitializeComponent();
+			if (this.InitializeUI)
+			{
+				this.InitializeComponent();
+			}
 		}
 
 		#endregion
 
 		#region Public Properties
+
+		public bool InitializeUI { get; set; } = true;
 
 		public string? ToolTipText
 		{
@@ -98,7 +103,9 @@ namespace Diff.Net
 		private void DiffCtrl_ShowFileDifferences(object sender, DifferenceEventArgs e)
 		{
 			MainForm frmMain = (MainForm)this.MdiParent;
-			frmMain.ShowFileDifferences(e.ItemA, e.ItemB, DialogDisplay.UseOption);
+
+			// frmMain.ShowFileDifferences(e.ItemA, e.ItemB, DialogDisplay.UseOption); show difffiledialog
+			frmMain.ShowDirectDifferences(e.ItemA, e.ItemB); // not show difffiledialog
 		}
 
 		private void DirDiffForm_Load(object sender, EventArgs e)
