@@ -60,7 +60,7 @@
             typeGroup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             typeGroup.Name = "typeGroup";
             typeGroup.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            typeGroup.Size = new System.Drawing.Size(107, 226);
+            typeGroup.Size = new System.Drawing.Size(107, 245);
             typeGroup.TabIndex = 0;
             typeGroup.TabStop = false;
             typeGroup.Text = "Compare";
@@ -68,7 +68,7 @@
             // compareZip
             // 
             this.compareZip.AutoSize = true;
-            this.compareZip.Location = new System.Drawing.Point(16, 180);
+            this.compareZip.Location = new System.Drawing.Point(16, 191);
             this.compareZip.Name = "compareZip";
             this.compareZip.Size = new System.Drawing.Size(51, 24);
             this.compareZip.TabIndex = 4;
@@ -138,7 +138,7 @@
             optionsGroup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             optionsGroup.Name = "optionsGroup";
             optionsGroup.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            optionsGroup.Size = new System.Drawing.Size(372, 226);
+            optionsGroup.Size = new System.Drawing.Size(374, 245);
             optionsGroup.TabIndex = 1;
             optionsGroup.TabStop = false;
             optionsGroup.Text = "Options";
@@ -217,7 +217,7 @@
             this.Controls.Add(typeGroup);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CompareOptionsControl";
-            this.Size = new System.Drawing.Size(501, 234);
+            this.Size = new System.Drawing.Size(501, 253);
             this.Load += new System.EventHandler(this.CompareOptionsControl_Load);
             typeGroup.ResumeLayout(false);
             typeGroup.PerformLayout();

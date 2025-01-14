@@ -76,6 +76,52 @@ namespace Diff.Net
 			}
 		}
 
+		public static void ExtractZipFile(string[] zipFilesA, string[] zipFilesB, bool delZipFile = false)
+		{
+			if (zipFilesA.Length > 0)
+				{
+					foreach (string zipFile in zipFilesA)
+					{
+					int lastIndex = zipFile.LastIndexOf('\\');
+					string? dir = zipFile.Substring(0, lastIndex);
+					string extractFile = Path.Combine(dir, Path.GetFileNameWithoutExtension(zipFile));
+					if (Directory.Exists(extractFile))
+							{
+								Directory.Delete(extractFile, recursive: true);
+								Directory.CreateDirectory(extractFile);
+							}
+
+					ZipFile.ExtractToDirectory(zipFile, extractFile);
+
+					if (delZipFile == true)
+					{
+						File.Delete(zipFile);
+					}
+					}
+				}
+
+			if (zipFilesB.Length > 0)
+			{
+					foreach (string zipFile in zipFilesB)
+					{
+					int lastIndex = zipFile.LastIndexOf('\\');
+					string? dir = zipFile.Substring(0, lastIndex);
+					string extractFile = Path.Combine(dir, Path.GetFileNameWithoutExtension(zipFile));
+					if (Directory.Exists(extractFile))
+						{
+						Directory.Delete(extractFile, recursive: true);
+						Directory.CreateDirectory(extractFile);
+						}
+
+					ZipFile.ExtractToDirectory(zipFile, extractFile);
+					if (delZipFile == true)
+					{
+						File.Delete(zipFile);
+					}
+					}
+			}
+		}
+
 		public void HandleDragDrop(DragEventArgs e)
 		{
 			if (e.Data?.GetDataPresent(DataFormats.FileDrop) ?? false)
@@ -98,17 +144,17 @@ namespace Diff.Net
 				{
 					Options.LastFileA = dialog.NameA;
 					Options.LastFileB = dialog.NameB;
-					int lastIndexA = dialog.NameA.LastIndexOf('\\');
-					int lastIndexB = dialog.NameB.LastIndexOf('\\');
 					if (
 						Options.CompareType == CompareType.Zip
 						&& Path.GetExtension(dialog.NameA).Equals(".zip", StringComparison.OrdinalIgnoreCase)
 						&& Path.GetExtension(dialog.NameB).Equals(".zip", StringComparison.OrdinalIgnoreCase))
 					{
-						string dirA = dialog.NameA.Substring(0, lastIndexA);
-						string dirB = dialog.NameB.Substring(0, lastIndexB);
-						string fileA = Path.GetFileNameWithoutExtension(dialog.NameA);
-						string fileB = Path.GetFileNameWithoutExtension(dialog.NameB);
+						int lastIndexA = fileNameA.LastIndexOf('\\');
+						int lastIndexB = fileNameB.LastIndexOf('\\');
+						string dirA = fileNameA.Substring(0, lastIndexA);
+						string dirB = fileNameB.Substring(0, lastIndexB);
+						string fileA = Path.GetFileNameWithoutExtension(fileNameA);
+						string fileB = Path.GetFileNameWithoutExtension(fileNameB);
 						string extractFileA = dirA + '\\' + fileA;
 						string extractFileB = dirB + '\\' + fileB;
 						if (Directory.Exists(extractFileA))
@@ -123,60 +169,16 @@ namespace Diff.Net
 							Directory.CreateDirectory(extractFileB);
 						}
 
-						ZipFile.ExtractToDirectory(dialog.NameA, extractFileA);
-						ZipFile.ExtractToDirectory(dialog.NameB, extractFileB);
+						ZipFile.ExtractToDirectory(fileNameA, extractFileA);
+						ZipFile.ExtractToDirectory(fileNameB, extractFileB);
 
 						// get all fileZip in subfolder and extract them
 						string[] zipFilesA = Directory.GetFiles(extractFileA, "*.zip", SearchOption.AllDirectories);
 						string[] zipFilesB = Directory.GetFiles(extractFileB, "*.zip", SearchOption.AllDirectories);
-						if (zipFilesA.Length > 0)
-							{
-								foreach (string zipFile in zipFilesA)
-								{
-								int lastIndex = zipFile.LastIndexOf('\\');
-								string? dir = zipFile.Substring(0, lastIndex);
-								string extractFile = Path.Combine(dir, Path.GetFileNameWithoutExtension(zipFile));
-								if (Directory.Exists(extractFile))
-										{
-											Directory.Delete(extractFile);
-											Directory.CreateDirectory(extractFile);
-										}
-
-								ZipFile.ExtractToDirectory(zipFile, extractFile);
-								File.Delete(zipFile);
-								}
-							}
-
-						if (zipFilesB.Length > 0)
-						{
-								foreach (string zipFile in zipFilesB)
-								{
-								int lastIndex = zipFile.LastIndexOf('\\');
-								string? dir = zipFile.Substring(0, lastIndex);
-								string extractFile = Path.Combine(dir, Path.GetFileNameWithoutExtension(zipFile));
-								if (Directory.Exists(extractFile))
-									{
-									Directory.Delete(extractFile);
-									Directory.CreateDirectory(extractFile);
-									}
-
-								ZipFile.ExtractToDirectory(zipFile, extractFile);
-								File.Delete(zipFile);
-								}
-						}
-
+						ExtractZipFile(zipFilesA, zipFilesB, true);
 						string[] directoriesA = Directory.GetDirectories(extractFileA, "*", SearchOption.AllDirectories);
 						string[] directoriesB = Directory.GetDirectories(extractFileB, "*", SearchOption.AllDirectories);
-						var leafDirectoriesA = directoriesA.Where(dir => Directory.GetDirectories(dir).Length == 0);
-						var leafDirectoriesB = directoriesB.Where(dir => Directory.GetDirectories(dir).Length == 0);
-						foreach (string dirLeft in leafDirectoriesA)
-						{
-							foreach (string dirRight in leafDirectoriesB)
-							{
-								this.ShowDifferences(dirLeft, dirRight, DiffType.Directory);
-							}
-						}
-
+						this.LoopCompare(directoriesA, directoriesB);
 						this.ShowDifferences(extractFileA + '\\' + fileA, extractFileB + '\\' + fileB, DiffType.Directory);
 					}
 					else
@@ -187,6 +189,20 @@ namespace Diff.Net
 			}
 		}
 
+		public void LoopCompare(string[] directoriesA, string[] directoriesB)
+		{
+			var leafDirectoriesA = directoriesA.Where(dir => Directory.GetDirectories(dir).Length == 0);
+			var leafDirectoriesB = directoriesB.Where(dir => Directory.GetDirectories(dir).Length == 0);
+			foreach (string dirLeft in leafDirectoriesA)
+			{
+				foreach (string dirRight in leafDirectoriesB)
+				{
+					this.ShowDifferences(dirLeft, dirRight, DiffType.Directory);
+				}
+			}
+		}
+
+		// this.ShowDifferences(extractFileA + '\\' + fileA, extractFileB + '\\' + fileB, DiffType.Directory);
 		public void ShowTextDifferences(string textA, string textB)
 		{
 			Options.LastTextA = textA;
@@ -496,8 +512,29 @@ namespace Diff.Net
 				{
 					Options.LastDirA = dialog.NameA;
 					Options.LastDirB = dialog.NameB;
-
-					this.ShowDifferences(dialog.NameA, dialog.NameB, DiffType.Directory);
+					string[] zipFilesA = Directory.GetFiles(directoryA, "*.zip", SearchOption.AllDirectories);
+					string[] zipFilesB = Directory.GetFiles(directoryB, "*.zip", SearchOption.AllDirectories);
+					if (zipFilesA.Length > 0 || zipFilesB.Length > 0)
+					{
+						ExtractZipFile(zipFilesA, zipFilesB);
+						string[] directoriesA = Directory.GetDirectories(directoryA, "*", SearchOption.AllDirectories);
+						string[] directoriesB = Directory.GetDirectories(directoryB, "*", SearchOption.AllDirectories);
+						this.LoopCompare(directoriesA, directoriesB);
+						this.ShowDifferences(dialog.NameA, dialog.NameB, DiffType.Directory);
+					}
+					else
+					{
+						if (Options.LineByLine == true)
+						{
+							string[] directoriesA = Directory.GetDirectories(directoryA, "*", SearchOption.AllDirectories);
+							string[] directoriesB = Directory.GetDirectories(directoryB, "*", SearchOption.AllDirectories);
+							this.LoopCompare(directoriesA, directoriesB);
+						}
+						else
+						{
+							this.ShowDifferences(dialog.NameA, dialog.NameB, DiffType.Directory);
+						}
+					}
 				}
 			}
 		}

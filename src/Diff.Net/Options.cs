@@ -82,6 +82,8 @@ namespace Diff.Net
 
 		public static bool Recursive { get; set; } = true;
 
+		public static bool LineByLine { get; set; } = true;
+
 		public static bool ShowChangeAsDeleteInsert { get; set; }
 
 		public static bool ShowDifferent { get; set; } = true;
@@ -233,6 +235,7 @@ namespace Diff.Net
 			ShowDifferent = node.GetValue(nameof(ShowDifferent), ShowDifferent);
 			ShowSame = node.GetValue(nameof(ShowSame), ShowSame);
 			Recursive = node.GetValue(nameof(Recursive), Recursive);
+			LineByLine = node.GetValue(nameof(LineByLine), LineByLine);
 			IgnoreDirectoryComparison = node.GetValue(nameof(IgnoreDirectoryComparison), IgnoreDirectoryComparison);
 			OnlyShowFileDialogIfShiftPressed = node.GetValue(nameof(OnlyShowFileDialogIfShiftPressed), OnlyShowFileDialogIfShiftPressed);
 			OnlyShowDirDialogIfShiftPressed = node.GetValue(nameof(OnlyShowDirDialogIfShiftPressed), OnlyShowDirDialogIfShiftPressed);
@@ -298,6 +301,7 @@ namespace Diff.Net
 			node.SetValue(nameof(ShowDifferent), ShowDifferent);
 			node.SetValue(nameof(ShowSame), ShowSame);
 			node.SetValue(nameof(Recursive), Recursive);
+			node.SetValue(nameof(LineByLine), LineByLine);
 			node.SetValue(nameof(IgnoreDirectoryComparison), IgnoreDirectoryComparison);
 			node.SetValue(nameof(OnlyShowFileDialogIfShiftPressed), OnlyShowFileDialogIfShiftPressed);
 			node.SetValue(nameof(OnlyShowDirDialogIfShiftPressed), OnlyShowDirDialogIfShiftPressed);

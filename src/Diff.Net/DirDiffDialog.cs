@@ -91,6 +91,7 @@ namespace Diff.Net
 			Options.ShowDifferent = this.chkShowDifferent.Checked;
 			Options.ShowSame = this.chkShowSame.Checked;
 			Options.Recursive = this.chkRecursive.Checked;
+			Options.LineByLine = this.chkLineByLine.Checked;
 			Options.IgnoreDirectoryComparison = this.chkIgnoreDirectoryComparison.Checked;
 			Options.OnlyShowDirDialogIfShiftPressed = this.chkOnlyIfShift.Checked;
 
